@@ -1,4 +1,5 @@
 import * as chains from "viem/chains";
+import { defineChain } from "viem";
 
 export type ScaffoldConfig = {
   targetNetworks: readonly chains.Chain[];
@@ -9,9 +10,49 @@ export type ScaffoldConfig = {
   walletAutoConnect: boolean;
 };
 
+const polygonAmoy = /*#__PURE__*/ defineChain({
+  id: 80_002,
+  name: "Polygon Amoy",
+  network: "maticamo",
+  nativeCurrency: { name: "MATIC", symbol: "MATIC", decimals: 18 },
+  rpcUrls: {
+    alchemy: {
+      http: ["https://polygon-amoy.g.alchemy.com/v2"],
+      webSocket: ["wss://polygon-amoy.g.alchemy.com/v2"],
+    },
+    infura: {
+      http: ["https://polygon-amoy.infura.io/v3"],
+      webSocket: ["wss://polygon-amoy.infura.io/ws/v3"],
+    },
+    default: {
+      http: ["https://rpc.ankr.com/polygon_mumbai"],
+    },
+    public: {
+      http: ["https://rpc.ankr.com/polygon_mumbai"],
+    },
+  },
+  blockExplorers: {
+    etherscan: {
+      name: "PolygonScan",
+      url: "https://amoy.polygonscan.com",
+    },
+    default: {
+      name: "PolygonScan",
+      url: "https://amoy.polygonscan.com",
+    },
+  },
+  contracts: {
+    multicall3: {
+      address: "0xca11bde05977b3631167028862be2a173976ca11",
+      blockCreated: 25770160,
+    },
+  },
+  testnet: true,
+});
+
 const scaffoldConfig = {
   // The networks on which your DApp is live
-  targetNetworks: [chains.hardhat],
+  targetNetworks: [polygonAmoy, chains.sepolia, chains.baseSepolia, chains.optimismSepolia],
 
   // The interval at which your front-end polls the RPC servers for new data
   // it has no effect if you only target the local network (default is 4000)
