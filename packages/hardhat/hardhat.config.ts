@@ -81,7 +81,7 @@ const config: HardhatUserConfig = {
       verify: {
         etherscan: {
           apiKey: `${etherscanApiKey}`,
-          apiUrl: "https://api-amoy.polygonscan.com/api",
+          apiUrl: "https://api-amoy.polygonscan.com",
         },
       },
     },
@@ -135,7 +135,7 @@ const config: HardhatUserConfig = {
         chainId: 80002,
         urls: {
           apiURL: "https://api-amoy.polygonscan.com/api",
-          browserURL: "https://amoy.polygonscan.com"
+          browserURL: "https://amoy.polygonscan.com",
         },
       },
     ],
